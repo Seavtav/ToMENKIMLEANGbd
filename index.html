@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <style>
+      :root {
+        --primary-pink: #ff75a0;
+        --secondary-purple: #814096;
+        --glass-bg: rgba(255, 255, 255, 0.2);
+        --text-shadow: 0 0 15px rgba(255, 117, 160, 0.8);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #fce4ec, #f3e5f5, #e1bee7);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Container & Glassmorphism */
+      .container {
+        width: 90%;
+        max-width: 600px;
+        margin: 50px 20px;
+        padding: 40px 20px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 25px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        text-align: center;
+        z-index: 10;
+      }
+
+      /* Typography */
+      h1 {
+        font-size: 3rem;
+        color: white;
+        text-shadow: var(--text-shadow);
+        margin-bottom: 10px;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      .name-tag {
+        font-size: 2rem;
+        color: var(--secondary-purple);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow:
+            0 0 10px #fff,
+            0 0 20px var(--primary-pink);
+        }
+        to {
+          text-shadow:
+            0 0 20px #fff,
+            0 0 30px #ff4081;
+        }
+      }
+
+      /* Photo Section */
+      .photo-frame {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+        border: 5px solid white;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .photo-frame:hover {
+        transform: scale(1.05) rotate(3deg);
+      }
+
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Typing Effect */
+      #typing-text {
+        font-size: 1.2rem;
+        color: #4a4a4a;
+        min-height: 1.5em;
+        margin: 20px 0;
+        font-style: italic;
+      }
+
+      /* Buttons */
+      .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        margin-top: 30px;
+      }
+
+      button {
+        padding: 12px 30px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 220px;
+      }
+
+      .btn-surprise {
+        background: var(--primary-pink);
+        color: white;
+      }
+
+      .btn-music {
+        background: white;
+        color: var(--secondary-purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      /* Hidden Surprise */
+      #surprise-msg {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 15px;
+        color: #d81b60;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      .fade-up {
+        animation: fadeUp 1s ease forwards;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Audio Controls */
+      audio {
+        margin-top: 15px;
+        width: 100%;
+        max-width: 250px;
+        height: 30px;
+      }
+
+      /* Animations: Balloons & Hearts */
+      .floating-element {
+        position: fixed;
+        bottom: -100px;
+        z-index: 1;
+        pointer-events: none;
+        animation: float Up 10s linear infinite;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Mobile Adjustments */
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+        .name-tag {
+          font-size: 1.5rem;
+        }
+        .container {
+          padding: 30px 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Happy Birthday 🎉</h1>
+      <span class="name-tag">Men Kimleang</span>
+
+      <div class="photo-frame">
+        <img src="/IMG_6041.PNG" alt="Birthday Person" />
+      </div>
+
+      <div id="typing-text"></div>
+
+      <div class="btn-group">
+        <button class="btn-surprise" onclick="showSurprise()">
+          Click for Surprise 🎁
+        </button>
+
+        <button class="btn-music" onclick="toggleMusic()" id="musicBtn">
+          <span>Play Music 🎵</span>
+        </button>
+        <audio id="birthdaySong" src="music.mp3" controls></audio>
+      </div>
+
+      <div id="surprise-msg">
+        <p>
+          Happy Birthday to my most beautiful, loving, gorgeous and caring
+          girlfriend!!! I love you soo much and I'll be supporting you from
+          afar. I know you've had your struggles but I know you'll be able to
+          overcome it all! I can't imagine living without you, you were the
+          first ever person to make me feel loved and appreciated and had never
+          failed to put a smile on my face ever since I met you, you're the best
+          girlfriend ever my lovee! Happy Birthday again, I lovee youuu Soo
+          muchhh 😚😘🥰😽💕🩷💝💘💞💖💓💗💋💋💋🥳🥳🥳🎉🎉🎊🎊💌
+        </p>
+      </div>
+    </div>
+
+    <canvas
+      id="confetti"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 99;
+      "
+    ></canvas>
+
+    <script>
+      // 1. Typing Effect
+      const text =
+        "O ach jam mer tongver rbos B ban tha B slanh O pin na O sml ❤️...";
+
+      let index = 0;
+      function typeEffect() {
+        if (index < text.length) {
+          document.getElementById("typing-text").innerHTML +=
+            text.charAt(index);
+          index++;
+          setTimeout(typeEffect, 70);
+        }
+      }
+      window.onload = typeEffect;
+
+      // 2. Surprise Message & Confetti
+      function showSurprise() {
+        const msg = document.getElementById("surprise-msg");
+        msg.style.display = "block";
+        msg.classList.add("fade-up");
+        startConfetti();
+      }
+
+      // 3. Music Toggle
+      const song = document.getElementById("birthdaySong");
+      const musicBtn = document
+        .getElementById("musicBtn")
+        .querySelector("span");
+
+      function toggleMusic() {
+        if (song.paused) {
+          song.play();
+          musicBtn.innerText = "Pause Music ⏸️";
+        } else {
+          song.pause();
+          musicBtn.innerText = "Play Music 🎵";
+        }
+      }
+
+      // 4. Background Floating Elements (Hearts & Balloons)
+      function createFloater() {
+        const elements = ["🎈", "💖", "✨", "🌸", "🎂"];
+        const el = document.createElement("div");
+        el.className = "floating-element";
+        el.innerText = elements[Math.floor(Math.random() * elements.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.fontSize = Math.random() * 20 + 20 + "px";
+        el.style.animationDuration = Math.random() * 5 + 5 + "s";
+        el.style.opacity = Math.random();
+
+        document.body.appendChild(el);
+
+        setTimeout(() => {
+          el.remove();
+        }, 10000);
+      }
+      setInterval(createFloater, 500);
+
+      // 5. Simple Confetti System
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let particles = [];
+
+      function startConfetti() {
+        for (let i = 0; i < 100; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 7 + 3,
+            color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+            velocity: {
+              x: (Math.random() - 0.5) * 3,
+              y: Math.random() * 3 + 2,
+            },
+          });
+        }
+        animateConfetti();
+      }
+
+      function animateConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, i) => {
+          p.y += p.velocity.y;
+          p.x += p.velocity.x;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        });
+        if (particles.length > 0) requestAnimationFrame(animateConfetti);
+      }
+    </script>
+  </body>
+</html>
